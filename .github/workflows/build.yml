@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * 5' # Run every friday at midnight
 
 env:
-  KERNEL_BRANCH: 6.12.1
+  KERNEL_BRANCH: 6.13.0
 
 jobs:
   build-image:
@@ -30,7 +30,7 @@ jobs:
         run: |
           echo -e '\n\n' | pmbootstrap init || true
           cd ~/.local/var/pmbootstrap/cache_git/pmaports
-          git remote add mainlining https://github.com/mainlining/pmaports.git
+          git remote add mainlining https://github.com/meleehao/pmaports.git
           git fetch mainlining nikroks/alioth
           git reset --hard mainlining/nikroks/alioth
 
@@ -66,6 +66,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: xiaomi-alioth
+          name: xiaomi-alioth-plasma-mobile
           path: out/*-alioth.img*
           retention-days: 7
